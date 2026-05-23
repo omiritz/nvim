@@ -1,0 +1,46 @@
+-- ================================
+-- Atalhos de Teclado
+-- ================================
+
+local keymap = vim.keymap.set
+
+-- Leader key
+vim.g.mapleader = " "
+
+-- ================================
+-- Salvar e Sair
+-- ================================
+keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "Salvar arquivo" })
+keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "Fechar janela" })
+
+-- ================================
+-- Explorador de Arquivos (netrw)
+-- ================================
+keymap("n", "<leader>e", ":Ex<CR>", {
+    noremap = true,
+    silent = true,
+    desc = "Abrir explorador de arquivos"
+})
+
+-- ================================
+-- Copiar Paths
+-- ================================
+keymap("n", "<leader>cp", function()
+    vim.fn.setreg("+", vim.fn.expand("%:p"))
+    print("Path copiado: " .. vim.fn.expand("%:p"))
+end, { desc = "Copiar path absoluto" })
+
+keymap("n", "<leader>cl", function()
+    local file = vim.fn.expand("%:p")
+    local line = vim.fn.line(".")
+    local text = string.format("%s:%d", file, line)
+    vim.fn.setreg("+", text)
+    print("Copiado: " .. text)
+end, { desc = "Copiar arquivo + linha" })
+
+-- ================================
+-- Telescope
+-- ================================
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Buscar arquivos" })
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Buscar texto" })
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Buscar buffers" })
