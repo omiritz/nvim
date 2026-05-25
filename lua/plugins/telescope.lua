@@ -29,10 +29,13 @@ return {
                     "%.egg-info/",
                 },
 
+                layout_strategy = "horizontal",
                 layout_config = {
-                    width = 0.9,
-                    height = 0.9,
-                    preview_width = 0.6,
+                    horizontal = {
+                        width = 0.9,
+                        height = 0.9,
+                        preview_width = 0.6,
+                    },
                 },
 
                 preview = {
@@ -57,13 +60,31 @@ return {
             },
         })
 
-        -- Keymaps customizados sem preview para melhor performance
+        -- Keymaps customizados com layout vertical compacto (diferente do live grep)
         vim.keymap.set("n", "<leader>ff", function()
-            builtin.find_files({ previewer = false })
-        end, { desc = "Buscar arquivos (sem preview)" })
+            builtin.find_files({
+                previewer = false,
+                layout_strategy = "vertical",
+                layout_config = {
+                    width = 0.5,
+                    height = 0.7,
+                    prompt_position = "top",
+                },
+            })
+        end, { desc = "Buscar arquivos" })
 
         vim.keymap.set("n", "<leader>fb", function()
-            builtin.buffers({ previewer = false })
-        end, { desc = "Buscar buffers (sem preview)" })
+            builtin.buffers({
+                previewer = false,
+                layout_strategy = "vertical",
+                layout_config = {
+                    width = 0.5,
+                    height = 0.7,
+                    prompt_position = "top",
+                },
+                sort_mru = true,
+                ignore_current_buffer = true,
+            })
+        end, { desc = "Buscar buffers" })
     end,
 }

@@ -38,9 +38,9 @@ keymap("n", "<leader>cl", function()
     print("Copiado: " .. text)
 end, { desc = "Copiar arquivo + linha" })
 
+
 -- ================================
 -- Telescope
 -- ================================
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Buscar arquivos" })
+-- ff e fb estão configurados no telescope.lua com layout vertical compacto
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Buscar texto" })
-keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Buscar buffers" })

@@ -86,3 +86,5 @@ O lazy.nvim vai carregar automaticamente!
 3. Teste os atalhos: `<space>ff`, `<space>fg`, `<space>e`
 
 Tudo deve funcionar exatamente como antes, mas agora organizado!
+
+

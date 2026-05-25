@@ -22,22 +22,42 @@ vim.api.nvim_create_user_command("CopyMatches", function(opts)
     print(string.format("Copiadas %d linhas para clipboard", #matches))
 end, { nargs = 1, desc = "Copiar linhas que correspondem ao padrão" })
 
--- Contar ocorrências de um padrão
-vim.api.nvim_create_user_command("CountMatches", function(opts)
-    local pattern = opts.args:lower()
-    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-    local count = 0
+-- Insere DateTime abaixo do cursor e abre nova linha (como "o")
+vim.api.nvim_create_user_command("Datetime", function()
+  local datetime = os.date("%Y-%m-%d %H:%M:%S")
+  -- Adiciona data/hora no final da linha atual
+  vim.api.nvim_put({ datetime }, "c", true, true)
+  -- Simula o comportamento do "o": nova linha abaixo e modo insert
+  vim.cmd("normal! o")
+end, {})
 
-    for _, line in ipairs(lines) do
-        line = line:lower()
-        local start = 1
-        while true do
-            local s, e = line:find(pattern, start, true)
-            if not s then break end
-            count = count + 1
-            start = e + 1
-        end
-    end
 
-    print(string.format("Matches: %d", count))
-end, { nargs = 1, desc = "Contar ocorrências de padrão" })
+vim.api.nvim_create_user_command("CopyPath", function()
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+  local builtin = require("telescope.builtin")
+
+  builtin.find_files({
+    attach_mappings = function(prompt_bufnr, map)
+      local copy_path = function()
+        local selection = action_state.get_selected_entry()
+
+        actions.close(prompt_bufnr)
+
+        local path = selection.path or selection[1]
+
+        -- caminho relativo ao cwd atual
+        local relative = vim.fn.fnamemodify(path, ":.")
+
+        vim.fn.setreg("+", relative)
+
+        print("Copiado: " .. relative)
+      end
+
+      map("i", "<CR>", copy_path)
+      map("n", "<CR>", copy_path)
+
+      return true
+    end,
+  })
+end, {})
