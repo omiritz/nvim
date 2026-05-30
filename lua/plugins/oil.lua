@@ -56,6 +56,34 @@ return {
                 ["gx"] = "actions.open_external",
                 ["g."] = "actions.toggle_hidden",
                 ["g\\"] = "actions.toggle_trash",
+                -- Copiar paths
+                ["gy"] = {
+                    desc = "Copiar path absoluto",
+                    callback = function()
+                        local oil = require("oil")
+                        local entry = oil.get_cursor_entry()
+                        local dir = oil.get_current_dir()
+                        if entry and dir then
+                            local path = dir .. entry.name
+                            vim.fn.setreg("+", path)
+                            print("Copiado: " .. path)
+                        end
+                    end,
+                },
+                ["gY"] = {
+                    desc = "Copiar path relativo",
+                    callback = function()
+                        local oil = require("oil")
+                        local entry = oil.get_cursor_entry()
+                        local dir = oil.get_current_dir()
+                        if entry and dir then
+                            local path = dir .. entry.name
+                            local relative = vim.fn.fnamemodify(path, ":~:.")
+                            vim.fn.setreg("+", relative)
+                            print("Copiado: " .. relative)
+                        end
+                    end,
+                },
             },
             use_default_keymaps = true,
             view_options = {
