@@ -22,6 +22,17 @@ keymap("n", "<leader>e", ":Ex<CR>", {
     desc = "Abrir explorador de arquivos"
 })
 
+
+-- ================================
+-- Gerenciamento de Buffers
+-- ================================
+keymap("n", "<leader>bb", ":buffers<CR>:buffer<Space>", { desc = "Listar e escolher buffer" })
+keymap("n", "<leader>bn", ":bnext<CR>", { desc = "Próximo buffer" })
+keymap("n", "<leader>bp", ":bprevious<CR>", { desc = "Buffer anterior" })
+keymap("n", "<leader>bd", ":bdelete<CR>", { desc = "Fechar buffer atual" })
+keymap("n", "<Tab>", ":bnext<CR>", { desc = "Próximo buffer" })
+keymap("n", "<S-Tab>", ":bprevious<CR>", { desc = "Buffer anterior" })
+
 -- ================================
 -- Copiar Paths
 -- ================================

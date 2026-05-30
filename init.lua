@@ -53,5 +53,5 @@ require("config.commands")
 -- ================================
 -- Tema e Aparência
 -- ================================
-vim.cmd("colorscheme habamax")
+vim.cmd("colorscheme wildcharm")
 vim.cmd("highlight Comment gui=italic")

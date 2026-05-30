@@ -7,7 +7,15 @@
       "Bash(git config *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(python3)",
+      "Bash(python3 gerar_markdown_completo.py)",
+      "Bash(python3 gerar_markdown_por_modulos_gis.py)",
+      "Bash(python3 reorganizar_lotes_correto.py)",
+      "Bash(python3 gerar_plano_final_correto.py)",
+      "Bash(python3 gerar_markdown_final_completo.py)",
+      "Bash(python3 gerar_resumo_executivo.py)",
+      "Bash(python atualizar_docs_cbk_lote1.py)"
     ]
   }
 }
