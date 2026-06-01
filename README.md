@@ -17,8 +17,7 @@ nvim/
 │   └── plugins/
 │       ├── telescope.lua         # Fuzzy finder
 │       ├── oil.lua               # File explorer
-│       ├── obsidian-daily.lua    # Notas diárias Obsidian
-│       └── visual-multi.lua      # Múltiplos cursores
+│       └── obsidian-daily.lua    # Notas diárias Obsidian
 └── README.md
 ```
 
@@ -36,7 +35,6 @@ nvim/
 - **plenary.nvim** - Biblioteca de utilitários (dependência do Telescope)
 - **oil.nvim** - File explorer com edição inline de arquivos
 - **nvim-web-devicons** - Ícones para tipos de arquivo
-- **vim-visual-multi** - Edição com múltiplos cursores (similar ao VS Code)
 - **obsidian-daily** - Plugin customizado para notas diárias do Obsidian
 
 ## ⌨️ Atalhos Principais
@@ -76,17 +74,6 @@ Quando estiver no Oil:
 - `gY` - Copiar path relativo do arquivo sob o cursor
 - `g?` - Mostrar todos os atalhos
 
-### Múltiplos Cursores (vim-visual-multi)
-- `<C-d>` - Adicionar cursor na próxima ocorrência da palavra
-- `<C-Down>` - Adicionar cursor na linha abaixo
-- `<C-Up>` - Adicionar cursor na linha acima
-- `<C-Shift-L>` - Selecionar todas as ocorrências
-- `<C-x>` - Pular ocorrência atual
-- `<Tab>` - Alternar entre modo cursor/extend
-- `q` - Remover cursor atual
-- `Q` - Remover todos os cursores
-- `<Esc>` - Sair do modo de múltiplos cursores
-
 ### Obsidian Daily Notes
 - `<leader>ot` - Abrir nota de hoje
 - `<leader>on` - Ir para próximo dia
@@ -102,13 +89,27 @@ Quando estiver no Oil:
 - `:ObsidianDaily` - Abre ou cria nota diária do Obsidian
 - `:Today` - Alias para `:ObsidianDaily`
 
-## 🔄 Visual Block Mode Nativo
+## 🔄 Edição Multilinha (Visual Block Mode)
 
-Para edição em bloco sem plugins:
-- `<Ctrl-Q>` - Entrar no Visual Block mode (Windows)
-- `j/k` - Selecionar múltiplas linhas
-- `<Shift-I>` - Inserir no início das linhas selecionadas
-- `<Esc><Esc>` - Aplicar em todas as linhas
+O Neovim possui suporte nativo para edição em bloco:
+
+**Modo Visual Block:**
+- `<Ctrl-Q>` - Entrar no Visual Block mode (Windows usa Ctrl-Q ao invés de Ctrl-V)
+- `j/k` - Selecionar múltiplas linhas verticalmente
+- `h/l` - Expandir seleção horizontalmente
+- `<Shift-I>` - Inserir no início de todas as linhas selecionadas
+- `<Shift-A>` - Inserir no final de todas as linhas selecionadas
+- `c` - Mudar (deletar e entrar em insert mode)
+- `d` - Deletar bloco selecionado
+- `<Esc><Esc>` - Aplicar alteração em todas as linhas
+
+**Modo Visual Line:**
+- `<Shift-V>` - Selecionar linhas inteiras
+- `j/k` - Expandir seleção
+- `:normal I` - Inserir no início de cada linha
+- `:normal A` - Inserir no final de cada linha
+
+**Dica:** Para substituir texto em múltiplas linhas, use `:s/padrão/substituição/g` na seleção visual
 
 ## 🚀 Instalação
 
