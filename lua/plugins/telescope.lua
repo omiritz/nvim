@@ -67,8 +67,8 @@ return {
                 previewer = false,
                 layout_strategy = "vertical",
                 layout_config = {
-                    width = 0.4,
-                    height = 0.5,
+                    width = 0.6,   -- 60% da largura (era 0.4)
+                    height = 0.7,  -- 70% da altura (era 0.5)
                     prompt_position = "top",
                 },
             })
