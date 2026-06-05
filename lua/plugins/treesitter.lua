@@ -6,6 +6,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = false,
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = function()
         local ok, treesitter = pcall(require, "nvim-treesitter.configs")
         if not ok then
@@ -66,6 +69,87 @@ return {
                     node_incremental = "<C-space>",
                     scope_incremental = "<C-s>",
                     node_decremental = "<C-backspace>",
+                },
+            },
+
+            -- ================================
+            -- Text Objects (integrado)
+            -- ================================
+            textobjects = {
+                select = {
+                    enable = true,
+                    lookahead = true,
+
+                    keymaps = {
+                        -- Funções
+                        ["af"] = "@function.outer",
+                        ["if"] = "@function.inner",
+
+                        -- Classes
+                        ["ac"] = "@class.outer",
+                        ["ic"] = "@class.inner",
+
+                        -- Condicionais (if/else)
+                        ["ai"] = "@conditional.outer",
+                        ["ii"] = "@conditional.inner",
+
+                        -- Loops
+                        ["al"] = "@loop.outer",
+                        ["il"] = "@loop.inner",
+
+                        -- Parâmetros/argumentos
+                        ["aa"] = "@parameter.outer",
+                        ["ia"] = "@parameter.inner",
+
+                        -- Comentários
+                        ["aC"] = "@comment.outer",
+
+                        -- Blocos
+                        ["ab"] = "@block.outer",
+                        ["ib"] = "@block.inner",
+                    },
+
+                    selection_modes = {
+                        ["@function.outer"] = "V", -- linewise
+                        ["@class.outer"] = "V",    -- linewise
+                    },
+                },
+
+                move = {
+                    enable = true,
+                    set_jumps = true,
+
+                    goto_next_start = {
+                        ["]f"] = "@function.outer",
+                        ["]c"] = "@class.outer",
+                        ["]a"] = "@parameter.inner",
+                    },
+
+                    goto_next_end = {
+                        ["]F"] = "@function.outer",
+                        ["]C"] = "@class.outer",
+                    },
+
+                    goto_previous_start = {
+                        ["[f"] = "@function.outer",
+                        ["[c"] = "@class.outer",
+                        ["[a"] = "@parameter.inner",
+                    },
+
+                    goto_previous_end = {
+                        ["[F"] = "@function.outer",
+                        ["[C"] = "@class.outer",
+                    },
+                },
+
+                swap = {
+                    enable = true,
+                    swap_next = {
+                        ["<leader>sn"] = "@parameter.inner",
+                    },
+                    swap_previous = {
+                        ["<leader>sp"] = "@parameter.inner",
+                    },
                 },
             },
         })
