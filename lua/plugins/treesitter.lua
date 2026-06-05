@@ -22,6 +22,8 @@ return {
                 "markdown",
                 "markdown_inline",
                 "python",
+                "java",
+                "groovy",
                 "javascript",
                 "typescript",
                 "html",
