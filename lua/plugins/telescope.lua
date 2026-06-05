@@ -66,8 +66,8 @@ return {
                 previewer = false,
                 layout_strategy = "vertical",
                 layout_config = {
-                    width = 0.5,
-                    height = 0.7,
+                    width = 0.4,
+                    height = 0.5,
                     prompt_position = "top",
                 },
             })
@@ -78,8 +78,8 @@ return {
                 previewer = false,
                 layout_strategy = "vertical",
                 layout_config = {
-                    width = 0.5,
-                    height = 0.7,
+                    width = 0.4,
+                    height = 0.5,
                     prompt_position = "top",
                 },
                 sort_mru = true,
