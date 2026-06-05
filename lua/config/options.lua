@@ -39,7 +39,7 @@ opt.swapfile = false
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
 opt.updatetime = 250
-opt.timeoutlen = 300
+opt.timeoutlen = 500  -- Tempo de espera para keymaps compostos (ms)
 
 -- Splits
 opt.splitright = true
