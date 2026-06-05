@@ -65,39 +65,59 @@ return {
                     node_decremental = "<C-backspace>",
                 },
             },
+        })
 
-            -- ================================
-            -- Text Objects (integrado)
-            -- ================================
-            textobjects = {
-                select = {
-                    enable = true,
-                    lookahead = true,
-
-                    keymaps = {
-                        -- Funções
-                        ["af"] = "@function.outer",
-                        ["if"] = "@function.inner",
-
-                        -- Classes
-                        ["ac"] = "@class.outer",
-                        ["ic"] = "@class.inner",
-
-                        -- Parâmetros/argumentos
-                        ["aa"] = "@parameter.outer",
-                        ["ia"] = "@parameter.inner",
-
-                        -- Blocos
-                        ["ab"] = "@block.outer",
-                        ["ib"] = "@block.inner",
-                    },
-
-                    selection_modes = {
-                        ["@function.outer"] = "V", -- linewise
-                        ["@class.outer"] = "V",    -- linewise
-                    },
+        -- ================================
+        -- Text Objects (API nova)
+        -- ================================
+        require("nvim-treesitter-textobjects").setup({
+            select = {
+                lookahead = true,
+                selection_modes = {
+                    ["@function.outer"] = "V", -- linewise
+                    ["@class.outer"] = "V",    -- linewise
                 },
+                include_surrounding_whitespace = false,
             },
         })
+
+        -- Keymaps manuais (conforme nova API)
+        local select = require("nvim-treesitter-textobjects.select").select_textobject
+
+        -- Funções
+        vim.keymap.set({ "x", "o" }, "if", function()
+            select("@function.inner", "textobjects")
+        end, { desc = "Selecionar dentro da função" })
+
+        vim.keymap.set({ "x", "o" }, "af", function()
+            select("@function.outer", "textobjects")
+        end, { desc = "Selecionar função inteira" })
+
+        -- Classes
+        vim.keymap.set({ "x", "o" }, "ic", function()
+            select("@class.inner", "textobjects")
+        end, { desc = "Selecionar dentro da classe" })
+
+        vim.keymap.set({ "x", "o" }, "ac", function()
+            select("@class.outer", "textobjects")
+        end, { desc = "Selecionar classe inteira" })
+
+        -- Parâmetros
+        vim.keymap.set({ "x", "o" }, "ia", function()
+            select("@parameter.inner", "textobjects")
+        end, { desc = "Selecionar parâmetro" })
+
+        vim.keymap.set({ "x", "o" }, "aa", function()
+            select("@parameter.outer", "textobjects")
+        end, { desc = "Selecionar parâmetro com vírgula" })
+
+        -- Blocos
+        vim.keymap.set({ "x", "o" }, "ib", function()
+            select("@block.inner", "textobjects")
+        end, { desc = "Selecionar dentro do bloco" })
+
+        vim.keymap.set({ "x", "o" }, "ab", function()
+            select("@block.outer", "textobjects")
+        end, { desc = "Selecionar bloco inteiro" })
     end,
 }
