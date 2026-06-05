@@ -10,7 +10,7 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
     },
     config = function()
-        require("nvim-treesitter.configs").setup({
+        require("nvim-treesitter.config").setup({
             -- Linguagens para instalar automaticamente
             ensure_installed = {
                 "lua",
