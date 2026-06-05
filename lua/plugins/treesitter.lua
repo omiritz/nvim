@@ -7,7 +7,13 @@ return {
     build = ":TSUpdate",
     lazy = false,
     config = function()
-        require("nvim-treesitter.configs").setup({
+        local ok, treesitter = pcall(require, "nvim-treesitter.configs")
+        if not ok then
+            vim.notify("Treesitter não instalado ainda. Execute :Lazy sync", vim.log.levels.WARN)
+            return
+        end
+
+        treesitter.setup({
             -- Linguagens para instalar automaticamente
             ensure_installed = {
                 "lua",
