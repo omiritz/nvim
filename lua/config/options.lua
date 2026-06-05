@@ -54,12 +54,12 @@ opt.foldmethod = "indent"
 opt.foldenable = false
 opt.foldlevel = 99
 
--- Netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
-
 -- Compilador C (para Treesitter)
 vim.env.CC = "gcc"
+
+-- Desabilitar netrw (usamos Oil)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Syntax
 vim.cmd("filetype plugin indent on")

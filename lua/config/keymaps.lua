@@ -38,16 +38,6 @@ keymap("n", "<leader><Tab>", function()
     require("utils.buffer-picker").open()
 end, { desc = "Abrir Buffer Picker" })
 
--- Navegação entre buffers
-keymap("n", "<Tab>", ":bnext<CR>", { desc = "Próximo buffer" })
-keymap("n", "<S-Tab>", ":bprevious<CR>", { desc = "Buffer anterior" })
-
--- Comandos de buffer
-keymap("n", "<leader>bb", ":buffers<CR>:buffer<Space>", { desc = "Listar e escolher buffer" })
-keymap("n", "<leader>bn", ":bnext<CR>", { desc = "Próximo buffer" })
-keymap("n", "<leader>bp", ":bprevious<CR>", { desc = "Buffer anterior" })
-keymap("n", "<leader>bd", ":bdelete<CR>", { desc = "Fechar buffer atual" })
-
 -- ================================
 -- Copiar Paths
 -- ================================

@@ -61,6 +61,7 @@ return {
         })
 
         -- Keymaps customizados com layout vertical compacto (diferente do live grep)
+        -- Buscar arquivos
         vim.keymap.set("n", "<leader>ff", function()
             builtin.find_files({
                 previewer = false,
@@ -72,19 +73,5 @@ return {
                 },
             })
         end, { desc = "Buscar arquivos" })
-
-        vim.keymap.set("n", "<leader>fb", function()
-            builtin.buffers({
-                previewer = false,
-                layout_strategy = "vertical",
-                layout_config = {
-                    width = 0.4,
-                    height = 0.5,
-                    prompt_position = "top",
-                },
-                sort_mru = true,
-                ignore_current_buffer = true,
-            })
-        end, { desc = "Buscar buffers" })
     end,
 }
