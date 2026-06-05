@@ -9,6 +9,9 @@ return {
         {
             "nvim-telescope/telescope-fzf-native.nvim",
             build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+            cond = function()
+                return vim.fn.executable("cmake") == 1
+            end,
         },
     },
     config = function()
@@ -16,8 +19,8 @@ return {
         local actions = require("telescope.actions")
         local builtin = require("telescope.builtin")
 
-        -- Carregar extensão fzf
-        telescope.load_extension("fzf")
+        -- Carregar extensão fzf se disponível
+        pcall(telescope.load_extension, "fzf")
 
         telescope.setup({
             defaults = {
