@@ -33,6 +33,10 @@ end, {
 -- ================================
 -- Gerenciamento de Buffers
 -- ================================
+-- Navegação entre buffers com Tab
+keymap("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Próximo buffer", silent = true })
+keymap("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Buffer anterior", silent = true })
+
 -- Buffer Picker - Seleção rápida com números
 keymap("n", "<leader><Tab>", function()
     require("utils.buffer-picker").open()
