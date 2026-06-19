@@ -98,8 +98,19 @@ local function set_mode_colors()
     end
 end
 
--- Aplica cor inicial
-set_mode_colors()
+-- Aplica cor inicial após carregar o colorscheme
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        set_mode_colors()
+    end,
+})
+
+-- Aplica cor quando o colorscheme muda
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+        set_mode_colors()
+    end,
+})
 
 -- Atualiza cor quando o modo muda
 vim.api.nvim_create_autocmd("ModeChanged", {
