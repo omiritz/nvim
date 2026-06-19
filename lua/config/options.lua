@@ -12,7 +12,7 @@ opt.termguicolors = true
 opt.statuscolumn = ""
 opt.laststatus = 0  -- Desabilita statusline (0=nunca, 2=sempre, 3=global)
 opt.ruler = true    -- Mostra posição do cursor (linha, coluna)
-opt.showmode = false  -- Oculta o modo (-- INSERT --)
+opt.showmode = true  -- Mostra o modo (-- INSERT --, -- VISUAL --, etc)
 opt.cmdheight = 1   -- Altura da linha de comando
 opt.conceallevel = 1
 opt.showmatch = true
@@ -70,22 +70,26 @@ vim.cmd("filetype plugin indent on")
 vim.cmd("syntax on")
 
 -- Customização de cores da statusline/ruler por modo
--- Define as cores para cada modo
+-- Fundo preto, apenas texto colorido
 local function set_mode_colors()
     local mode = vim.fn.mode()
 
     if mode == "n" then
-        -- Modo Normal: azul com texto branco
-        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#3b82f6", fg = "#ffffff" })
+        -- Modo Normal: texto azul
+        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#3b82f6" })
+        vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#3b82f6", bold = true })
     elseif mode == "i" then
-        -- Modo Insert: vermelho com texto branco
-        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#ef4444", fg = "#ffffff" })
+        -- Modo Insert: texto vermelho
+        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#ef4444" })
+        vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#ef4444", bold = true })
     elseif mode == "v" or mode == "V" or mode == "\22" then
-        -- Modo Visual/Visual Line/Visual Block: roxo com texto branco
-        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#a855f7", fg = "#ffffff" })
+        -- Modo Visual/Visual Line/Visual Block: texto roxo
+        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#a855f7" })
+        vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#a855f7", bold = true })
     else
-        -- Outros modos: cor padrão
-        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#1e1e2e", fg = "#ffffff" })
+        -- Outros modos: texto branco
+        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#ffffff" })
+        vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#ffffff", bold = true })
     end
 end
 
