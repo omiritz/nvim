@@ -76,10 +76,10 @@ local function set_mode_colors()
     local mode = vim.fn.mode()
 
     if mode == "n" then
-        -- Modo Normal: texto azul
-        vim.api.nvim_set_hl(0, "StatusLine", { bg = "#1c1c1c", fg = "#3b82f6" })
-        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#3b82f6" })
-        vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#3b82f6", bold = true })
+        -- Modo Normal: texto verde
+        vim.api.nvim_set_hl(0, "StatusLine", { bg = "#1c1c1c", fg = "#10b981" })
+        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#10b981" })
+        vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#10b981", bold = true })
     elseif mode == "i" then
         -- Modo Insert: texto vermelho
         vim.api.nvim_set_hl(0, "StatusLine", { bg = "#1c1c1c", fg = "#ef4444" })
