@@ -10,6 +10,7 @@ opt.relativenumber = true
 opt.cursorline = true
 opt.termguicolors = true
 opt.statuscolumn = ""
+opt.laststatus = 0  -- Desabilita statusline (0=nunca, 2=sempre, 3=global)
 opt.conceallevel = 1
 opt.showmatch = true
 opt.matchtime = 2
