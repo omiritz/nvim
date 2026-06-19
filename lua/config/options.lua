@@ -14,6 +14,7 @@ opt.laststatus = 0  -- Desabilita statusline (0=nunca, 2=sempre, 3=global)
 opt.ruler = true    -- Mostra posição do cursor (linha, coluna)
 opt.showmode = true  -- Mostra o modo (-- INSERT --, -- VISUAL --, etc)
 opt.cmdheight = 1   -- Altura da linha de comando
+opt.winbar = "%f"   -- Mostra apenas nome do arquivo no topo da janela
 opt.conceallevel = 1
 opt.showmatch = true
 opt.matchtime = 2
