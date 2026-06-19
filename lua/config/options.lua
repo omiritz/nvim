@@ -10,11 +10,11 @@ opt.relativenumber = true
 opt.cursorline = true
 opt.termguicolors = true
 opt.statuscolumn = ""
-opt.laststatus = 0  -- Desabilita statusline (0=nunca, 2=sempre, 3=global)
-opt.ruler = true    -- Mostra posição do cursor (linha, coluna)
+opt.laststatus = 2  -- Sempre mostra statusline
+opt.statusline = " %t %m %= %l:%c | %P "  -- Nome arquivo | modificado | linha:coluna | posição
+opt.ruler = false   -- Desabilita ruler (já está na statusline)
 opt.showmode = true  -- Mostra o modo (-- INSERT --, -- VISUAL --, etc)
 opt.cmdheight = 1   -- Altura da linha de comando
-opt.winbar = "%f"   -- Mostra apenas nome do arquivo no topo da janela
 opt.conceallevel = 1
 opt.showmatch = true
 opt.matchtime = 2
@@ -70,25 +70,29 @@ vim.g.loaded_netrwPlugin = 1
 vim.cmd("filetype plugin indent on")
 vim.cmd("syntax on")
 
--- Customização de cores da statusline/ruler por modo
+-- Customização de cores da statusline por modo
 -- Fundo preto, apenas texto colorido
 local function set_mode_colors()
     local mode = vim.fn.mode()
 
     if mode == "n" then
         -- Modo Normal: texto azul
+        vim.api.nvim_set_hl(0, "StatusLine", { bg = "#000000", fg = "#3b82f6" })
         vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#3b82f6" })
         vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#3b82f6", bold = true })
     elseif mode == "i" then
         -- Modo Insert: texto vermelho
+        vim.api.nvim_set_hl(0, "StatusLine", { bg = "#000000", fg = "#ef4444" })
         vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#ef4444" })
         vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#ef4444", bold = true })
     elseif mode == "v" or mode == "V" or mode == "\22" then
         -- Modo Visual/Visual Line/Visual Block: texto roxo
+        vim.api.nvim_set_hl(0, "StatusLine", { bg = "#000000", fg = "#a855f7" })
         vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#a855f7" })
         vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#a855f7", bold = true })
     else
         -- Outros modos: texto branco
+        vim.api.nvim_set_hl(0, "StatusLine", { bg = "#000000", fg = "#ffffff" })
         vim.api.nvim_set_hl(0, "MsgArea", { bg = "#000000", fg = "#ffffff" })
         vim.api.nvim_set_hl(0, "ModeMsg", { bg = "#000000", fg = "#ffffff", bold = true })
     end
