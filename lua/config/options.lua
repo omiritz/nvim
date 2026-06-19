@@ -11,6 +11,9 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.statuscolumn = ""
 opt.laststatus = 0  -- Desabilita statusline (0=nunca, 2=sempre, 3=global)
+opt.ruler = true    -- Mostra posição do cursor (linha, coluna)
+opt.showmode = false  -- Oculta o modo (-- INSERT --)
+opt.cmdheight = 1   -- Altura da linha de comando
 opt.conceallevel = 1
 opt.showmatch = true
 opt.matchtime = 2
@@ -65,3 +68,32 @@ vim.g.loaded_netrwPlugin = 1
 -- Syntax
 vim.cmd("filetype plugin indent on")
 vim.cmd("syntax on")
+
+-- Customização de cores da statusline/ruler por modo
+-- Define as cores para cada modo
+local function set_mode_colors()
+    local mode = vim.fn.mode()
+
+    if mode == "n" then
+        -- Modo Normal: vermelho com texto branco
+        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#ef4444", fg = "#ffffff" })
+    elseif mode == "i" then
+        -- Modo Insert: azul com texto branco
+        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#3b82f6", fg = "#ffffff" })
+    elseif mode == "v" or mode == "V" or mode == "\22" then
+        -- Modo Visual/Visual Line/Visual Block: roxo com texto branco
+        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#a855f7", fg = "#ffffff" })
+    else
+        -- Outros modos: cor padrão
+        vim.api.nvim_set_hl(0, "MsgArea", { bg = "#1e1e2e", fg = "#ffffff" })
+    end
+end
+
+-- Aplica cor inicial
+set_mode_colors()
+
+-- Atualiza cor quando o modo muda
+vim.api.nvim_create_autocmd("ModeChanged", {
+    pattern = "*",
+    callback = set_mode_colors,
+})
