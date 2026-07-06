@@ -1,154 +1,131 @@
-# Configuração do Neovim
+# Configuração Neovim
 
-Configuração pessoal do Neovim focada em desenvolvimento com **Python**, **Groovy**, **Java**, **Node.js**, **Docker** e documentação em **Markdown**.
+Configuração pessoal do Neovim focada em produtividade e simplicidade.
 
-## 📁 Estrutura
+## Estrutura
 
 ```
-nvim/
-├── init.lua                       # Entrada principal
+.
+├── init.lua                    # Ponto de entrada, carrega plugins e configurações
 ├── lua/
 │   ├── config/
-│   │   ├── options.lua           # Configurações do Neovim
-│   │   ├── keymaps.lua           # Atalhos de teclado
-│   │   └── commands.lua          # Comandos customizados
-│   ├── utils/
-│   │   └── buffer-picker.lua     # Seletor de buffers numerado
-│   └── plugins/
-│       ├── telescope.lua         # Fuzzy finder
-│       ├── oil.lua               # File explorer
-│       └── obsidian-daily.lua    # Notas diárias Obsidian
-└── README.md
+│   │   ├── options.lua        # Opções do editor
+│   │   ├── keymaps.lua        # Atalhos de teclado
+│   │   └── commands.lua       # Comandos customizados
+│   ├── plugins/               # Configuração de plugins
+│   │   ├── telescope.lua      # Fuzzy finder
+│   │   ├── treesitter.lua     # Syntax highlighting
+│   │   ├── oil.lua           # File explorer
+│   │   ├── comment.lua       # Comentários
+│   │   └── obsidian-daily.lua # Notas diárias
+│   └── utils/
+│       └── buffer-picker.lua  # Seletor rápido de buffers
+└── .claude/settings.local.json
 ```
 
-## 🔧 Tecnologias
+## Gerenciador de Plugins
 
-- **Neovim**: v0.13.0-dev
-- **Plugin Manager**: lazy.nvim
-- **Python**: 3.9
-- **Java**: OpenJDK 21
-- **Node.js**: 24.11.1
+Lazy.nvim com instalação automática no bootstrap.
 
-## 📦 Plugins Instalados
+## Plugins Instalados
 
-- **telescope.nvim** - Fuzzy finder para arquivos e busca de texto
-- **plenary.nvim** - Biblioteca de utilitários (dependência do Telescope)
-- **oil.nvim** - File explorer com edição inline de arquivos
-- **nvim-web-devicons** - Ícones para tipos de arquivo
-- **obsidian-daily** - Plugin customizado para notas diárias do Obsidian
+### Telescope
+Fuzzy finder para busca de arquivos e texto.
+- `<leader>ff` - Buscar arquivos (layout vertical compacto)
+- `<leader>fg` - Buscar texto (live grep)
+- `:CopyPath` - Copiar path de arquivo via Telescope
 
-## ⌨️ Atalhos Principais
+Ignora automaticamente: `.git/`, `node_modules/`, `target/`, `__pycache__/`, `build/`, `dist/`
 
-**Leader Key**: `<Space>`
+### Treesitter
+Syntax highlighting avançado com análise de código.
+- Linguagens: Lua, Vim, Python, Java, Groovy, JavaScript, TypeScript, HTML, CSS, JSON, YAML, Bash, Go, Rust
+- Text objects: `if/af` (função), `ic/ac` (classe), `ia/aa` (parâmetro), `ib/ab` (bloco)
+- Seleção incremental: `<C-space>` expandir, `<C-backspace>` reduzir
+
+### Oil.nvim
+File explorer no estilo buffer editável.
+- `<leader>e` - Abrir Oil
+- `<leader>-` - Abrir Oil no diretório atual
+- `g.` - Toggle arquivos ocultos
+- `gy` - Copiar path absoluto
+- `gY` - Copiar path relativo
+
+### Comment.nvim
+Comentários rápidos.
+- `gcc` - Comentar/descomentar linha
+- `gc{motion}` - Comentar com movimento
+- `gcO/gco/gcA` - Adicionar comentário acima/abaixo/final da linha
+
+### Obsidian Daily
+Plugin customizado para notas diárias no Obsidian.
+- Auto-abre nota do dia ao entrar no diretório Obsidian
+- `<leader>ot` - Abrir nota de hoje
+- `<leader>on/op` - Nota próximo/anterior dia
+- `<leader>of` - Buscar notas com Telescope
+- `<leader>og` - Buscar conteúdo nas notas
+
+## Configurações
+
+### Aparência
+- Tema: wildcharm
+- Números de linha: absolutos + relativos
+- Statusline customizada com cores por modo:
+  - Normal: verde (#08CB00)
+  - Insert: vermelho (#ef4444)
+  - Visual: roxo (#a855f7)
+- Comentários em itálico
+
+### Indentação
+- 4 espaços
+- Tab expande para espaços
+- Auto-indent e smart-indent ativos
+
+### Comportamento
+- Leader key: `<Space>`
+- Clipboard integrado com sistema
+- Sem arquivos de backup/swap
+- Mouse habilitado
+- Split: direita e abaixo por padrão
+- Scroll offset: 8 linhas
+
+### Busca
+- Case insensitive com smart case
+- Incremental search
+- Highlight de resultados
+
+## Atalhos Principais
 
 ### Arquivos
 - `<leader>w` - Salvar arquivo
 - `<leader>q` - Fechar janela
-- `<leader>e` - Abrir Oil (file explorer)
-- `<leader>-` - Abrir Oil no diretório do arquivo atual
-
-### Busca (Telescope)
-- `<leader>ff` - Buscar arquivos (layout vertical compacto)
-- `<leader>fg` - Buscar texto (live grep)
-- `<leader>fb` - Listar buffers abertos (layout vertical compacto)
+- `<leader>e` - Oil explorer
+- `<leader>ff` - Telescope find files
+- `<leader>fg` - Telescope grep
 
 ### Buffers
-- `<leader><Tab>` - Abrir Buffer Picker (seleção numerada)
 - `<Tab>` - Próximo buffer
-- `<Shift-Tab>` - Buffer anterior
-- `<leader>bd` - Fechar buffer atual
-- `<leader>bb` - Listar e escolher buffer
+- `<S-Tab>` - Buffer anterior
+- `<leader><Tab>` - Buffer picker (seleção rápida com números 1-9)
 
 ### Copiar Paths
-- `<leader>cp` - Copiar path absoluto do arquivo atual
-- `<leader>cl` - Copiar path + número da linha atual
+- `<leader>cp` - Copiar path absoluto
+- `<leader>cl` - Copiar arquivo:linha
 
-### Oil (File Explorer)
-Quando estiver no Oil:
-- `<CR>` - Abrir arquivo/pasta
-- `<C-s>` - Abrir em split vertical
-- `<C-h>` - Abrir em split horizontal
-- `-` - Subir um diretório
-- `g.` - Mostrar/ocultar arquivos ocultos
-- `gy` - Copiar path absoluto do arquivo sob o cursor
-- `gY` - Copiar path relativo do arquivo sob o cursor
-- `g?` - Mostrar todos os atalhos
+## Comandos Customizados
 
-### Obsidian Daily Notes
-- `<leader>ot` - Abrir nota de hoje
-- `<leader>on` - Ir para próximo dia
-- `<leader>op` - Ir para dia anterior
-- `<leader>of` - Buscar notas diárias (Telescope)
-- `<leader>og` - Buscar conteúdo nas notas
+- `:CopyMatches <pattern>` - Copia todas as linhas que correspondem ao padrão
+- `:Datetime` - Insere data/hora abaixo do cursor
+- `:CopyPath` - Telescope para copiar path de arquivo
+- `:ObsidianDaily` / `:Today` - Abrir nota diária
+- `:BufferPicker` - Abrir seletor de buffers
 
-## 🛠️ Comandos Customizados
+## Compilador
 
-- `:CopyMatches <padrão>` - Copia todas as linhas que correspondem ao padrão
-- `:CopyPath` - Abre Telescope para buscar arquivo e copiar seu path relativo
-- `:Datetime` - Insere data/hora atual e abre nova linha
-- `:ObsidianDaily` - Abre ou cria nota diária do Obsidian
-- `:Today` - Alias para `:ObsidianDaily`
+Configurado para usar GCC (necessário para Treesitter compilar parsers no Windows).
 
-## 🔄 Edição Multilinha (Visual Block Mode)
+## Desabilitado
 
-O Neovim possui suporte nativo para edição em bloco:
-
-**Modo Visual Block:**
-- `<Ctrl-Q>` - Entrar no Visual Block mode (Windows usa Ctrl-Q ao invés de Ctrl-V)
-- `j/k` - Selecionar múltiplas linhas verticalmente
-- `h/l` - Expandir seleção horizontalmente
-- `<Shift-I>` - Inserir no início de todas as linhas selecionadas
-- `<Shift-A>` - Inserir no final de todas as linhas selecionadas
-- `c` - Mudar (deletar e entrar em insert mode)
-- `d` - Deletar bloco selecionado
-- `<Esc><Esc>` - Aplicar alteração em todas as linhas
-
-**Modo Visual Line:**
-- `<Shift-V>` - Selecionar linhas inteiras
-- `j/k` - Expandir seleção
-- `:normal I` - Inserir no início de cada linha
-- `:normal A` - Inserir no final de cada linha
-
-**Dica:** Para substituir texto em múltiplas linhas, use `:s/padrão/substituição/g` na seleção visual
-
-## 🚀 Instalação
-
-1. Clone este repositório:
-```bash
-git clone <seu-repo> ~/AppData/Local/nvim  # Windows
-```
-
-2. Abra o Neovim:
-```bash
-nvim
-```
-
-3. Os plugins serão instalados automaticamente pelo lazy.nvim
-
-## 📝 Personalização
-
-- **Opções**: Edite `lua/config/options.lua`
-- **Atalhos**: Edite `lua/config/keymaps.lua`
-- **Comandos**: Edite `lua/config/commands.lua`
-- **Plugins**: Adicione novos arquivos em `lua/plugins/`
-
-## 🔗 CLI Tools Integradas
-
-Este setup está preparado para integração com:
-- **bat** - Cat com syntax highlighting
-- **fzf** - Fuzzy finder
-- **ripgrep (rg)** - Busca rápida de texto
-- **yazi** - File manager
-- **lazygit** - Interface Git
-- **tree-sitter** - Parsing de código
-
-## 🐛 Troubleshooting
-
-Se algo não funcionar após atualizar:
-1. Remova o cache: `:Lazy clean`
-2. Reinstale plugins: `:Lazy sync`
-3. Reinicie o Neovim
-
-## 📄 Licença
-
-Configuração pessoal - use como referência!
+Plugins built-in desabilitados para melhor performance:
+- gzip, tarPlugin, tohtml, tutor, zipPlugin
+- netrw (substituído por Oil)

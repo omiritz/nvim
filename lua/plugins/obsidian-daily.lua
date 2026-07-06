@@ -107,7 +107,7 @@ return {
 			-- Cria a nota se não existir
 			if vim.fn.filereadable(daily_note) == 0 then
 				create_daily_note(daily_note)
-				vim.notify("📝 Nota diária criada: " .. vim.fn.fnamemodify(daily_note, ":."), vim.log.levels.INFO)
+				vim.notify("Nota diária criada: " .. vim.fn.fnamemodify(daily_note, ":."), vim.log.levels.INFO)
 			end
 
 			-- Abre a nota
@@ -175,7 +175,7 @@ return {
 				if vim.fn.filereadable(next_path) == 1 then
 					vim.cmd("edit " .. vim.fn.fnameescape(next_path))
 				else
-					vim.notify("⚠️  Nota do próximo dia não existe", vim.log.levels.WARN)
+					vim.notify("Nota do próximo dia não existe", vim.log.levels.WARN)
 				end
 			end
 		end, { desc = "Open next day's note" })

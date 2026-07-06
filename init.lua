@@ -53,5 +53,5 @@ require("config.commands")
 -- ================================
 -- Tema e Aparência
 -- ================================
-vim.cmd("colorscheme wildcharm")
+vim.cmd("colorscheme retrobox")
 vim.cmd("highlight Comment gui=italic")
