@@ -60,6 +60,11 @@ end, { desc = "Copiar arquivo + linha" })
 
 
 -- ================================
+-- Twilight
+-- ================================
+keymap("n", "<leader>tw", "<cmd>Twilight<CR>", { desc = "Toggle Twilight" })
+
+-- ================================
 -- Telescope
 -- ================================
 -- ff e fb estão configurados no telescope.lua com layout vertical compacto
