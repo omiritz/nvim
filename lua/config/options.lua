@@ -68,4 +68,5 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Syntax
 vim.cmd("filetype plugin indent on")
-vim.cmd("syntax on")
+vim.cmd("syntax enable")
+vim.g.syntax_on = 1

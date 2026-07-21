@@ -1,4 +1,5 @@
 return {
+    -- fix: xml nao tem parser
     "folke/twilight.nvim",
     opts = {
         dimming = {
@@ -7,7 +8,7 @@ return {
             term_bg = "#000000",
             inactive = false,
         },
-        context = 10, -- número de linhas que consideramos como contexto
+        context = 3, -- número de linhas que consideramos como contexto
         treesitter = true, -- usa treesitter quando disponível para o contexto
         expand = {
             "function",
@@ -15,6 +16,6 @@ return {
             "table",
             "if_statement",
         },
-        exclude = {}, -- excluir esses filetypes
+        exclude = {"oil"}, -- excluir esses filetypes
     },
 }

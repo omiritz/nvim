@@ -18,7 +18,13 @@
       "Bash(python atualizar_docs_cbk_lote1.py)",
       "Bash(git revert *)",
       "Bash(/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command \"Get-ChildItem -Recurse -File | Select-Object FullName\")",
-      "Bash(grep -E '\\\\.\\(lua|vim|md\\)$')"
+      "Bash(grep -E '\\\\.\\(lua|vim|md\\)$')",
+      "Bash(git tag *)",
+      "Bash(nvim --headless -c \"lua print\\(vim.treesitter.language.get_lang\\('lua'\\) or 'NOT_FOUND'\\)\" -c \"quit\")",
+      "Bash(nvim --headless -c \"TSInstallSync lua vim vimdoc markdown python java javascript typescript html css json yaml bash\" -c \"quit\")",
+      "Bash(nvim *)",
+      "Bash(gcc --version)",
+      "Bash(cl.exe)"
     ]
   }
 }
