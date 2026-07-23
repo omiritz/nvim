@@ -6,8 +6,14 @@ return {
             delay = 200,
             under_cursor = false,
         })
-        vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Search" })
-        vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Search" })
-        vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Search" })
+
+        local function set_hl()
+            vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Search" })
+            vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Search" })
+            vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Search" })
+        end
+
+        set_hl()
+        vim.api.nvim_create_autocmd("ColorScheme", { callback = set_hl })
     end,
 }
