@@ -1,5 +1,0 @@
-- [ ] instalar ou verificar parser
-    - [ ] xml
-    - [ ] go
-    - [ ] lua
-- [ ] instalar blink.cml

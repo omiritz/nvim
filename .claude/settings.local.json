@@ -24,7 +24,10 @@
       "Bash(nvim --headless -c \"TSInstallSync lua vim vimdoc markdown python java javascript typescript html css json yaml bash\" -c \"quit\")",
       "Bash(nvim *)",
       "Bash(gcc --version)",
-      "Bash(cl.exe)"
+      "Bash(cl.exe)",
+      "Bash(awk '{print $5, $9}')",
+      "Read(//c/tmp/**)",
+      "Bash(echo '<?xml version=\"1.0\"?><root><test>hello</test></root>')"
     ]
   }
 }
