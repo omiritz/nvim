@@ -94,12 +94,9 @@ Plugin customizado para notas diárias no Obsidian.
 ## Configurações
 
 ### Aparência
-- Tema: wildcharm
+- Tema: retrobox
 - Números de linha: absolutos + relativos
-- Statusline customizada com cores por modo:
-  - Normal: verde (#08CB00)
-  - Insert: vermelho (#ef4444)
-  - Visual: roxo (#a855f7)
+- Statusline simples: arquivo | modificado | linha:coluna | posição
 - Comentários em itálico
 
 ### Indentação
