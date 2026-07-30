@@ -11,12 +11,17 @@ Configuração pessoal do Neovim focada em produtividade e simplicidade.
 │   ├── config/
 │   │   ├── options.lua        # Opções do editor
 │   │   ├── keymaps.lua        # Atalhos de teclado
+│   │   ├── autocmds.lua      # Auto-comandos
 │   │   └── commands.lua       # Comandos customizados
 │   ├── plugins/               # Configuração de plugins
 │   │   ├── telescope.lua      # Fuzzy finder
 │   │   ├── treesitter.lua     # Syntax highlighting
-│   │   ├── oil.lua           # File explorer
-│   │   ├── comment.lua       # Comentários
+│   │   ├── treesitter-context.lua # Contexto no topo
+│   │   ├── oil.lua            # File explorer
+│   │   ├── blink.lua          # Autocompletar
+│   │   ├── illuminate.lua     # Destacar ocorrências
+│   │   ├── twilight.lua       # Foco no código
+│   │   ├── lsp.lua            # LSP config
 │   │   └── obsidian-daily.lua # Notas diárias
 │   └── utils/
 │       └── buffer-picker.lua  # Seletor rápido de buffers
@@ -31,7 +36,8 @@ Lazy.nvim com instalação automática no bootstrap.
 
 ### Telescope
 Fuzzy finder para busca de arquivos e texto.
-- `<leader>ff` - Buscar arquivos (layout vertical compacto)
+- `<leader>ff` - Buscar arquivos (layout vertical compacto, sem preview)
+- `<leader>fd` - Buscar diagnostics (sem preview)
 - `<leader>fg` - Buscar texto (live grep)
 - `:CopyPath` - Copiar path de arquivo via Telescope
 
@@ -43,6 +49,10 @@ Syntax highlighting avançado com análise de código.
 - Text objects: `if/af` (função), `ic/ac` (classe), `ia/aa` (parâmetro), `ib/ab` (bloco)
 - Seleção incremental: `<C-space>` expandir, `<C-backspace>` reduzir
 
+### Treesitter Context
+Mostra contexto no topo da janela (classe, função, condición, etc.)
+- `[c` - Ir para o contexto atual
+
 ### Oil.nvim
 File explorer no estilo buffer editável.
 - `<leader>e` - Abrir Oil
@@ -51,11 +61,27 @@ File explorer no estilo buffer editável.
 - `gy` - Copiar path absoluto
 - `gY` - Copiar path relativo
 
-### Comment.nvim
-Comentários rápidos.
-- `gcc` - Comentar/descomentar linha
-- `gc{motion}` - Comentar com movimento
-- `gcO/gco/gcA` - Adicionar comentário acima/abaixo/final da linha
+### Blink.cmp
+Autocompletar com suporte a LSP.
+- `<Tab>` - Aceitar sugestão
+- `<CR>` - Nova linha (não aceita sugestão)
+
+### Illuminate
+Destaca todas as ocorrências da palavra sob o cursor.
+- Delay: 200ms
+- Usa highlight `Search` para visibilidade
+
+### Twilight
+Foco no código atual, escurece o resto.
+- `<leader>tw` - Toggle Twilight
+- Contexto: 3 linhas
+- Exclui: oil
+
+### LSP
+Configuração básica de LSP.
+- Mason para gerenciar servidores
+- Ruff LSP para Python
+- `<leader>ca` - Code Action
 
 ### Obsidian Daily
 Plugin customizado para notas diárias no Obsidian.
@@ -77,7 +103,7 @@ Plugin customizado para notas diárias no Obsidian.
 - Comentários em itálico
 
 ### Indentação
-- 4 espaços
+- 2 espaços
 - Tab expande para espaços
 - Auto-indent e smart-indent ativos
 
@@ -101,6 +127,7 @@ Plugin customizado para notas diárias no Obsidian.
 - `<leader>q` - Fechar janela
 - `<leader>e` - Oil explorer
 - `<leader>ff` - Telescope find files
+- `<leader>fd` - Telescope diagnostics
 - `<leader>fg` - Telescope grep
 
 ### Buffers
@@ -111,6 +138,12 @@ Plugin customizado para notas diárias no Obsidian.
 ### Copiar Paths
 - `<leader>cp` - Copiar path absoluto
 - `<leader>cl` - Copiar arquivo:linha
+
+### Código
+- `[c` - Ir para contexto (Treesitter Context)
+- `<leader>tw` - Toggle Twilight
+- `<leader>ca` - Code Action
+- `<leader>jq` - Formatar JSON com jq
 
 ## Comandos Customizados
 

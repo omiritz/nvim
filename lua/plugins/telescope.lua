@@ -60,18 +60,29 @@ return {
             },
         })
 
-        -- Keymaps customizados com layout vertical compacto (diferente do live grep)
-        -- Buscar arquivos
+        -- Keymaps customizados com layout vertical compacto (sem preview)
         vim.keymap.set("n", "<leader>ff", function()
             builtin.find_files({
                 previewer = false,
                 layout_strategy = "vertical",
                 layout_config = {
-                    width = 0.6,   -- 60% da largura (era 0.4)
-                    height = 0.7,  -- 70% da altura (era 0.5)
+                    width = 0.6,
+                    height = 0.7,
                     prompt_position = "top",
                 },
             })
         end, { desc = "Buscar arquivos" })
+
+        vim.keymap.set("n", "<leader>fd", function()
+            builtin.diagnostics({
+                previewer = false,
+                layout_strategy = "vertical",
+                layout_config = {
+                    width = 0.6,
+                    height = 0.7,
+                    prompt_position = "top",
+                },
+            })
+        end, { desc = "Buscar diagnostics" })
     end,
 }

@@ -37,6 +37,7 @@ end, {
 keymap("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Próximo buffer", silent = true })
 keymap("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Buffer anterior", silent = true })
 
+
 -- Buffer Picker - Seleção rápida com números
 keymap("n", "<leader><Tab>", function()
     require("utils.buffer-picker").open()
@@ -69,3 +70,13 @@ keymap("n", "<leader>tw", "<cmd>Twilight<CR>", { desc = "Toggle Twilight" })
 -- ================================
 -- ff e fb estão configurados no telescope.lua com layout vertical compacto
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Buscar texto" })
+
+vim.keymap.set("n", "<leader>jq", function()
+    vim.bo.filetype = "json"
+    vim.cmd("%!jq .")
+end, { desc = "Formatar JSON com jq" })
+
+
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
+    desc = "Code Action"
+})

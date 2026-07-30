@@ -3,9 +3,9 @@
 -- Fernando Konflanz
 -- ================================
 
+
 -- Leader key (precisa ser definido antes de carregar plugins)
 vim.g.mapleader = " "
-
 -- ================================
 -- Bootstrap do Lazy.nvim
 -- ================================
@@ -48,6 +48,7 @@ require("lazy").setup("plugins", {
 -- ================================
 require("config.options")
 require("config.keymaps")
+require("config.autocmds")
 require("config.commands")
 
 -- ================================
@@ -55,3 +56,6 @@ require("config.commands")
 -- ================================
 vim.cmd("colorscheme retrobox")
 vim.cmd("highlight Comment gui=italic")
+
+
+
